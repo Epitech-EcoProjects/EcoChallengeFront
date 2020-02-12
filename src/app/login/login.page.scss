@@ -1,0 +1,152 @@
+.dark-background {
+	--background: #2F2F2F;
+	background-color: #2F2F2F;
+}
+
+.center {
+	text-align: center;
+}
+
+.form {
+	width: 100vw;
+	position: absolute;
+	top: 45%;
+}
+
+.pre-select {
+	position: relative;
+  text-align: center;
+  margin: auto;
+	width: 80%;
+	top: 50%;
+}
+
+.post-select {
+	position: relative;
+  text-align: center;
+  margin: auto;
+	width: 80%;
+	top: 15%;
+}
+
+.slidein {
+  animation: 1s slidein alternate;
+}
+
+@keyframes slidein {
+  from {
+		position: relative;
+	  text-align: center;
+	  margin: auto;
+    top: 50%;
+    width: 80%
+  }
+
+  to {
+		position: relative;
+	  text-align: center;
+	  margin: auto;
+    top: 15%;
+    width: 80%;
+  }
+}
+
+.pre-title-form {
+	position: relative;
+  text-align: center;
+  margin: auto;
+	opacity: 0;
+	width: 80%;
+	top: 45%;
+}
+
+.post-title-form {
+	position: relative;
+  text-align: center;
+  margin: auto;
+	opacity: 1;
+	width: 80%;
+	top: 45%;
+}
+
+.inputsslidein {
+  animation: 2s inputsslidein alternate;
+}
+
+@keyframes inputsslidein {
+  from {
+		position: relative;
+	  text-align: center;
+	  margin-left: auto;
+		width: 80%;
+		top: 45%;
+		opacity: 0;
+  }
+
+  to {
+		position: relative;
+	  text-align: center;
+	  margin: auto;
+		width: 80%;
+    top: 45%;
+		opacity: 1;
+  }
+}
+
+.control-group {
+  margin-bottom: 8px;
+}
+
+.input-login {
+  text-align: center;
+  color: #2F2F2F;
+  background-color: #FFF;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  font-size: 16px;
+  padding: 10px 0;
+  width: 100%;
+}
+
+.password-view {
+	float: right;
+	position: relative;
+	font-size: 20px;
+	margin: 12px 7px 0 -30px;
+}
+
+.btn {
+	background-color: #872525;
+  border: 2px solid transparent;
+  font-size: 16px;
+  padding: 10px 0;
+  border-radius: 1px;
+  display: block;
+  width: 60%;
+  margin: 8px auto;
+  color: #FFF;
+	z-index: 10;
+	cursor: pointer;
+}
+
+button:disabled {
+	opacity: 0.5;
+}
+
+.login-button {
+	background-color: rgba(0, 0, 0, 0);
+	font-weight: bold;
+	color: #FFFFFF;
+	font-size: 24px;
+}
+
+.subtitle {
+	color: rgba(255, 255, 255, 0.5);
+	font-size: 14px;
+}
+
+hr {
+	width:0.5px;
+	height: 50px;
+	border-left: 1px solid #FFFFFF;
+}

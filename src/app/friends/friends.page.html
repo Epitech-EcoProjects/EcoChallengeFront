@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>
+      Friends
+    </ion-title>
+		<ion-buttons slot="start">
+			<ion-button ion-button menuToggle>
+				<ion-icon name="menu"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="dark-background">
+
+	<ion-refresher (ionRefresh)="doRefresh($event)" slot="fixed">
+		<ion-refresher-content pullingIcon="arrow-dropdown"></ion-refresher-content>
+	</ion-refresher>
+
+	<div style="height: 30px"></div>
+
+	<ion-label class="title-text" *ngIf="received && received.length > 0">Requests Received</ion-label>
+	<hr class="title-line" *ngIf="received && received.length > 0"/>
+
+	<div *ngFor="let r of received; let i = index">
+		<ion-card>
+			<ion-item>
+				{{r.user_id.pseudo}}
+				<button item-end class="ion-item-button add-color" (click)="validateRequest(r.id, r.user_id.id, i)">
+					<ion-icon name="md-add"></ion-icon>
+				</button>
+				<button item-end class="ion-item-button trash-color" (click)="deleteRequest(r.id, i, 'r')">
+					<ion-icon name="md-trash"></ion-icon>
+				</button>
+			</ion-item>
+		</ion-card>
+	</div>
+
+	<ion-label class="title-text" *ngIf="send && send.length > 0">Requests Send</ion-label>
+	<hr class="title-line" *ngIf="send && send.length > 0"/>
+
+	<div *ngFor="let s of send; let i = index">
+		<ion-card>
+			<ion-item>
+				{{s.recipient_id.pseudo}}
+				<button item-end class="ion-item-button trash-color" (click)="deleteRequest(s.id, i, 's')">
+					<ion-icon name="md-trash"></ion-icon>
+				</button>
+			</ion-item>
+		</ion-card>
+	</div>
+
+	<div style="margin-top: 30px">
+		<ion-label class="title-text">Friends List</ion-label>
+		<button ion-button (click)="AddFriend()" class="title-icon" style="background-color: #339933">
+			<ion-icon name="md-contacts"></ion-icon>
+		</button>
+	</div>
+	<hr class="title-line"/>
+
+	<div *ngFor="let friend of (friends | searchUsersPipe: filter); let i = index">
+		<ion-card>
+			<ion-item>
+				{{friend.friend_id.pseudo}}
+				<button item-end class="ion-item-button trash-color" (click)="removeFriend(friend, i)">
+					<ion-icon name="md-trash"></ion-icon>
+				</button>
+			</ion-item>
+		</ion-card>
+	</div>
+
+	<div id="addFriendModal" class="modal">
+	  <div class="modal-content">
+
+			<ion-icon name="md-close" class="close-modal" (click)="closeModal()"></ion-icon>
+	    <p style="font-size: 20px; margin-top: 0px">Friend's requests form</p>
+			<input #pseudoInput type="text" class="input-modal" placeholder="Friend's pseudo"/>
+			<button end class="modal-search-button" (click)="searchByPseudo(pseudoInput.value)">
+				<ion-icon name="md-search"></ion-icon>
+			</button>
+
+			<div *ngIf="loader" class="loader loader-middle"></div>
+
+			<div *ngFor="let user of users; let i = index">
+				<ion-card class="modal-ion-card">
+					<ion-item>
+						{{user.firstname}} {{user.lastname}}
+						<button *ngIf="!me && !alrdFriend && !alrdSend && !alrdReceived" item-end class="ion-item-button add-color" (click)="sendFriendRequest(user.id, i)">
+							<ion-icon name="md-add"></ion-icon>
+						</button>
+						<button *ngIf="me" item-end class="ion-item-button add-color">
+							<h6>Seriously...</h6>
+						</button>
+						<button *ngIf="alrdFriend" item-end class="ion-item-button add-color">
+							<ion-icon name="md-contacts"></ion-icon>
+						</button>
+						<button *ngIf="alrdSend" item-end class="ion-item-button add-color">
+							<ion-icon name="md-checkmark"></ion-icon>
+						</button>
+						<button *ngIf="alrdReceived" item-end class="ion-item-button add-color" (click)="validateRequestFromModal(user)">
+							<ion-icon name="md-trash"></ion-icon>
+						</button>
+					</ion-item>
+				</ion-card>
+			</div>
+
+	  </div>
+	</div>
+
+</ion-content>

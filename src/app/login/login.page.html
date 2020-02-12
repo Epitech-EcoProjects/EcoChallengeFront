@@ -1,0 +1,62 @@
+<ion-content class="dark-background">
+
+	<div [ngClass]="config == 0 ? 'pre-select' : 'slidein post-select'">
+		<img src="assets/imgs/Logo.png"/>
+	</div>
+
+	<form [formGroup]="log" *ngIf="this.log" class="form">
+
+		<div *ngIf="config == 1" class="pre-title-form" id="inputLogin">
+			<div class="control-group">
+				<input formControlName="email" type="email" class="input-login" placeholder="Email" />
+			</div>
+
+			<div class="control-group">
+				<input formControlName="password" type="password" class="input-login" placeholder="Password" id="passReg"/>
+				<ion-icon (click)="viewPass('passReg', 0)" class="password-view" name="{{passwordIcon[0]}}"></ion-icon>
+			</div>
+
+			<div class="control-group" style="padding-bottom: 5%">
+				<input formControlName="password_confirmation" type="password" class="input-login" placeholder="Password confirmation" id="passConfReg"/>
+				<ion-icon (click)="viewPass('passConfReg', 1)" class="password-view" name="{{passwordIcon[1]}}"></ion-icon>
+			</div>
+
+			<button ion-button clear class="btn" [disabled]="!log.valid || !validPassword()" (click)="register()">Register</button>
+		</div>
+
+		<div *ngIf="config == 2" class="pre-title-form" id="inputLogin">
+
+			<div class="control-group">
+				<input formControlName="email" type="email" class="input-login" placeholder="Email" />
+			</div>
+
+			<div class="control-group" style="padding-bottom: 5%">
+				<input formControlName="password" type="password" class="input-login" placeholder="Password" id="passLog"/>
+				<ion-icon (click)="viewPass('passLog', 2)" class="password-view" name="{{passwordIcon[2]}}"></ion-icon>
+			</div>
+
+			<button ion-button clear class="btn" [disabled]="!log.valid" (click)="login()">Log In</button>
+			<button ion-button clear class="btn" (click)="resetPassword()">Reset Password</button>
+		</div>
+
+	</form>
+
+</ion-content>
+
+<ion-footer no-border class="dark-background">
+	<div>
+		<ion-grid>
+			<ion-row class="center">
+				<ion-col size="5">
+					<button class="login-button" (click)="showForm(1)">Sign Up<p class="subtitle">Get Starting</p></button>
+				</ion-col>
+				<ion-col size="2">
+					<hr />
+				</ion-col>
+				<ion-col size="5">
+					<button class="login-button" (click)="showForm(2)">Sign In<p class="subtitle">Existing account</p></button>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</div>
+</ion-footer>

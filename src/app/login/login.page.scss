@@ -17,16 +17,16 @@
 	position: relative;
   text-align: center;
   margin: auto;
-	width: 80%;
-	top: 50%;
+	width: 45%;
+	top: 40%;
 }
 
 .post-select {
 	position: relative;
   text-align: center;
   margin: auto;
-	width: 80%;
-	top: 15%;
+	width: 45%;
+	top: 8%;
 }
 
 .slidein {
@@ -38,16 +38,16 @@
 		position: relative;
 	  text-align: center;
 	  margin: auto;
-    top: 50%;
-    width: 80%
+    top: 40%;
+    width: 45%
   }
 
   to {
 		position: relative;
 	  text-align: center;
 	  margin: auto;
-    top: 15%;
-    width: 80%;
+    top: 8%;
+    width: 45%;
   }
 }
 
@@ -138,6 +138,7 @@ button:disabled {
 	font-weight: bold;
 	color: #FFFFFF;
 	font-size: 24px;
+	outline: none;
 }
 
 .subtitle {

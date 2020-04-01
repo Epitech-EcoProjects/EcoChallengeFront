@@ -105,37 +105,45 @@ export class DataService {
 										.catch(this.handleError);
 	}
 
-	/* Bets */
+	/* Challenges */
 
-	getBets(id) {
+	getChallenges() {
 		let options = new RequestOptions({ headers: this.headers });
-		return this.http.get(this.baseURL + 'bets?user_id=' + id, options)
+		return this.http.get(this.baseURL + 'challenges?user_id=' + localStorage.getItem('id'), options)
 		.map(this.extractData)
 		.catch(this.handleError);
 	}
 
-	postBets(bet) {
-		let body = JSON.stringify({ bet })
+	/* Favorites */
+
+	getFavorite() {
 		let options = new RequestOptions({ headers: this.headers });
-		return this.http.post(this.baseURL + 'bets', body, options)
+		return this.http.get(this.baseURL + 'challenge_requests?user_id=' + localStorage.getItem('id'), options)
 		.map(this.extractData)
 		.catch(this.handleError);
 	}
 
-	postParticipants(bet_id, user_id) {
-		let body = JSON.stringify({ bet_id: bet_id, user_id: user_id })
+	postFavorite(id) {
+		let body = JSON.stringify({ challenge_id: id, user_id: localStorage.getItem('id') })
 		let options = new RequestOptions({ headers: this.headers });
-		return this.http.post(this.baseURL + 'participants', body, options)
+		return this.http.post(this.baseURL + 'challenge_requests', body, options)
 		.map(this.extractData)
 		.catch(this.handleError);
 	}
 
-	putParticipants(id, state) {
-		let body = JSON.stringify({ state: state })
+	putFavorite(id) {
+		let body = JSON.stringify({})
 		let options = new RequestOptions({ headers: this.headers });
-		return this.http.put(this.baseURL + 'participants/' + id, body, options)
+		return this.http.put(this.baseURL + 'challenge_requests/' + id, body, options)
 		.map(this.extractData)
 		.catch(this.handleError);
+	}
+
+	destroyFavorite(id) {
+		let options = new RequestOptions({ headers: this.headers });
+		return this.http.delete(this.baseURL + 'challenge_requests/' + id, options)
+										.map(this.extractData)
+										.catch(this.handleError);
 	}
 
 	/* Handle response */

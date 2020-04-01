@@ -44,7 +44,7 @@ export class SettingsPage implements OnInit {
 	}
 
 	getMe() {
-		this.data.getUser(localStorage.getItem('client_id'))
+		this.data.getUser(localStorage.getItem('id'))
 							.subscribe(
 								success => {
 									this.updateForm(success.body);

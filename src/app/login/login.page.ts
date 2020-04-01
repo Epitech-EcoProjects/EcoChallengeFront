@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
-import { Platform, ModalController, AlertController, LoadingController } from '@ionic/angular';
+import { Platform, ModalController, AlertController, LoadingController, NavController } from '@ionic/angular';
 
 import { AuthService } from '../../services/auth.service';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -19,8 +20,10 @@ export class LoginPage implements OnInit {
 
   constructor(private alertCtrl: AlertController,
 							private loadingCtrl: LoadingController,
+							private navCtrl: NavController,
 							private formBuilder: FormBuilder,
-							private auth: AuthService
+							private auth: AuthService,
+							private data: DataService
 							) { }
 
   ngOnInit() {
@@ -79,11 +82,25 @@ export class LoginPage implements OnInit {
 							.subscribe(
 								success => {
 									console.log("logged in !");
+									this.saveCredentials(success);
 								},
 								error => {
 									alert("error");
 								}
 							)
+	}
+
+	saveCredentials(infos) {
+		localStorage.setItem('access_token', infos.headers.get('access-token'));
+		localStorage.setItem('user_id', infos.headers.get('client'));
+		localStorage.setItem('uid', infos.headers.get('uid'));
+		localStorage.setItem('expiry', infos.headers.get('expiry'));
+		localStorage.setItem('token-type', infos.headers.get('token-type'));
+		localStorage.setItem('id', infos.body.data.id);
+		this.auth.setHeaders()
+		this.data.setHeaders()
+		this.navCtrl.navigateForward('/challenges')
+
 	}
 
 }

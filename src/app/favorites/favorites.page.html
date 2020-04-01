@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>
+      Favorites
+    </ion-title>
+		<ion-buttons slot="start">
+			<ion-menu-button ion-button menuToggle>
+				<ion-icon name="menu"></ion-icon>
+			</ion-menu-button>
+		</ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="dark-background">
+
+	<div class="xp-container" id="xp-container" (click)="xpAnimationClean()">
+		<ul>
+			<li><ion-icon name="star" class="xp-icon"></ion-icon></li>
+			<li><label class="xp-label" id="xp-label"></label></li>
+			<li><label class="xp-label">Congratulations !!</label></li>
+		</ul>
+		<label class="clean-screen-label">Click to continue</label>
+	</div>
+
+	<div style="height: 30px;"></div>
+
+	<ion-label class="title-text" *ngIf="favorites && favorites.length != 0">In Progress</ion-label>
+	<hr class="title-line"  *ngIf="favorites && favorites.length != 0"/>
+
+	<ion-card *ngFor="let favorite of favorites" class="card" (click)="selected = favorite.challenge_id.id">
+		<ion-card-title>
+			<label class="title">{{favorite.challenge_id.name}}</label>
+			<label class="note">{{favorite.challenge_id.note}}</label>
+			<ion-icon name="star" class="note"></ion-icon>
+		</ion-card-title>
+		<ion-card-content class="card-content" *ngIf="selected == favorite.challenge_id.id">
+			<hr class="line"/>
+			<label>{{favorite.challenge_id.description}}</label><br />
+
+			<button class="fav-buttons suppr-button" (click)="removeFavorites(favorite)">
+				<ion-icon name="trash"></ion-icon>
+			</button>
+
+			<button class="fav-buttons valid-button" (click)="validateFavorites(favorite)">
+				<ion-icon name="checkmark"></ion-icon>
+			</button>
+
+		</ion-card-content>
+	</ion-card>
+
+	<ion-label class="title-text" *ngIf="finisheds && finisheds.length != 0">Validated</ion-label>
+	<hr class="title-line" *ngIf="finisheds && finisheds.length != 0"/>
+
+	<ion-card *ngFor="let finished of finisheds" class="card" (click)="selected = finished.challenge_id.id">
+		<ion-card-title>
+			<label class="title">{{finished.challenge_id.name}}</label>
+			<label class="note">{{finished.challenge_id.note}}</label>
+			<ion-icon name="star" class="note"></ion-icon>
+		</ion-card-title>
+		<ion-card-content class="card-content" *ngIf="selected == finished.challenge_id.id">
+			<hr class="line"/>
+			<label>{{finished.challenge_id.description}}</label><br />
+
+		</ion-card-content>
+	</ion-card>
+
+</ion-content>

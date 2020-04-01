@@ -75,7 +75,7 @@ export class FriendsPage {
 
 	getReceived() {
 		return new Promise((resolve, reject) => {
-			this.data.getReceived(localStorage.getItem('client_id'))
+			this.data.getReceived(localStorage.getItem('id'))
 					.subscribe (
 						success => {
 							this.received = success.body;
@@ -90,7 +90,7 @@ export class FriendsPage {
 
 	getSend() {
 		return new Promise((resolve, reject) => {
-			this.data.getSend(localStorage.getItem('client_id'))
+			this.data.getSend(localStorage.getItem('id'))
 								.subscribe (
 									success => {
 										this.send = success.body;
@@ -105,7 +105,7 @@ export class FriendsPage {
 
 	getFriends() {
 		return new Promise((resolve, reject) => {
-			this.data.getFriends(localStorage.getItem('client_id'))
+			this.data.getFriends(localStorage.getItem('id'))
 								.subscribe(
 									success => {
 										this.friends = success.body;
@@ -154,7 +154,7 @@ export class FriendsPage {
 
 	itsMe() {
 		if (this.users && this.users[0]) {
-			if (this.users[0].id == localStorage.getItem('client_id'))
+			if (this.users[0].id == localStorage.getItem('id'))
 				this.me = true;
 		}
 	}
@@ -193,7 +193,7 @@ export class FriendsPage {
 	}
 
 	sendFriendRequest(id, index) {
-		this.data.postFriendsRequests(id, localStorage.getItem('client_id'))
+		this.data.postFriendsRequests(id, localStorage.getItem('id'))
 							.subscribe(
 								success => {
 									this.send.push(success.body);
@@ -217,10 +217,10 @@ export class FriendsPage {
 	}
 
 	validateRequest(id, friend_id, index) {
-		this.data.postFriends(localStorage.getItem('client_id'), friend_id)
+		this.data.postFriends(localStorage.getItem('id'), friend_id)
 							.subscribe(
 								success => {
-									this.data.postFriends(friend_id, localStorage.getItem('client_id'))
+									this.data.postFriends(friend_id, localStorage.getItem('id'))
 									.subscribe(
 										success => {
 											this.deleteRequest(id, index, 'r');

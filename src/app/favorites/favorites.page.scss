@@ -1,0 +1,131 @@
+.dark-background {
+	--background: #2F2F2F;
+	background-color: #2F2F2F;
+}
+
+.card {
+	background-color: white;
+	padding: 10px;
+}
+
+.card-validated {
+	background-color: #61b87c;
+	padding: 10px;
+}
+
+
+.title {
+	float: left;
+}
+
+.note {
+	float: right;
+	font-size: 14px;
+}
+
+.line {
+	margin-top: 35px;
+	background-color: black;
+}
+
+.card-content {
+	padding: 0;
+	text-align: center;
+}
+
+.fav-buttons {
+	padding: 10px 20px;
+	opacity: 0.8;
+	border-radius: 5px;
+	margin-top: 30px;
+	color: white;
+	font-size: 20px;
+}
+
+.suppr-button {
+	background-color: red;
+	float: left;
+	margin-left: 75px;
+}
+
+.valid-button {
+	background-color: green;
+	float: right;
+	margin-right: 75px;
+}
+
+.xp-container {
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	display: none;
+	justify-content: center;
+	padding-top: 26vh;
+	background-color: rgba(0, 0, 0, 0.7);
+	z-index: 100;
+}
+
+.xp-icon {
+	font-size: 70px;
+	color: #f7c12a;
+	animation: growAndRotate 1s;
+	height: 80px;
+}
+
+@keyframes growAndRotate {
+	from {
+		font-size: 0px;
+		transform: rotate(0);
+	}
+	to {
+		font-size: 70px;
+		transform: rotate(360deg);
+	}
+}
+
+.xp-label {
+	color: white;
+	font-size: 30px;
+	animation: grow 1s;
+	height: 100px;
+}
+
+@keyframes grow {
+	from {
+		font-size: 0px;
+	}
+	to {
+		font-size: 30px;
+	}
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+	height: min-content;
+}
+
+li {
+	text-align: center;
+}
+
+.clean-screen-label {
+	font-size: 16px;
+	position: absolute;
+	bottom: 100px;
+	color: white;
+	opacity: 0.6;
+}
+
+.title-text {
+	position: relative;
+	color: white;
+	font-size: 26px;
+	left: 10%;
+}
+
+.title-line {
+	background-color: #FFF !important;
+	position: relative;
+	left: 10%;
+}
